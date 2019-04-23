@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -25,7 +24,24 @@ public class MissionDAO implements IMissionDAO {
     }
 
     @Override
-    @Transactional
+    public void save(Mission mission) {
+
+        Session currentSession = entityManager.unwrap(Session.class);
+        currentSession.saveOrUpdate(mission);
+
+    }
+
+    @Override
+    public void deleteById(int id) {
+
+        Session currentSession = entityManager.unwrap(Session.class);
+        Query myQuery = currentSession.createQuery("delete from Mission where id=:missionId");
+        myQuery.setParameter("missionId", id);
+        myQuery.executeUpdate();
+
+    }
+
+    @Override
     public List<Mission> findAll() {
 
         Session currentSession = entityManager.unwrap(Session.class);

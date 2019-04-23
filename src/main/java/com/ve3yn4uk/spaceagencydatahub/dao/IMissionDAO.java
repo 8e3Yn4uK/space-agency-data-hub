@@ -10,6 +10,10 @@ import java.util.List;
 
 public interface IMissionDAO {
 
+    public void save(Mission mission);
+
+    public void deleteById(int id);
+
     public List<Mission> findAll();
 
 }
