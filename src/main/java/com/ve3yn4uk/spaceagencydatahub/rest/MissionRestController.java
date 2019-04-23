@@ -29,6 +29,10 @@ public class MissionRestController {
     public Mission addMission(@RequestBody Mission mission) {
 
         mission.setId(0);
+        String imageryType = mission.getImageryType();
+        if (!imageryType.equals("Panchromatic") && !imageryType.equals("Multispectral") && !imageryType.equals("Hyperspectral")) {
+            throw new IllegalImageryTypeException("ImageryType possible types are: Panchromatic, Multispectral, Hyperspectral");
+        }
         missionService.save(mission);
 
         return mission;
@@ -40,21 +44,27 @@ public class MissionRestController {
     @PutMapping("/missions")
     public Mission editMission(@RequestBody Mission mission) {
 
+        Mission myMission = missionService.findById(mission.getId());
+
+        if (myMission == null) {
+            throw new MissionNotFoundException("Mission id not found " + mission.getId());
+        }
+
         missionService.save(mission);
 
         return mission;
     }
 
     /**
-     *  mapping for DELETE / missions - remove an existing mission
+     * mapping for DELETE / missions - remove an existing mission
      */
     @DeleteMapping("/missions/{missionId}")
-    public String removeMission(@PathVariable int missionId){
+    public String removeMission(@PathVariable int missionId) {
 
         Mission mission = missionService.findById(missionId);
 
-        if(mission == null){
-            throw new RuntimeException("Mission not found " + missionId);
+        if (mission == null) {
+            throw new MissionNotFoundException("Mission id not found " + missionId);
         }
         missionService.deleteById(missionId);
 
