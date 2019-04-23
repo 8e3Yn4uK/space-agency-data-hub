@@ -16,4 +16,6 @@ public interface IMissionDAO {
 
     public List<Mission> findAll();
 
+    public Mission findById(int id);
+
 }

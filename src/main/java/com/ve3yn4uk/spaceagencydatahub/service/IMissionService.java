@@ -15,4 +15,6 @@ public interface IMissionService {
     public void deleteById(int id);
 
     public List<Mission> findAll();
+
+    public Mission findById(int id);
 }

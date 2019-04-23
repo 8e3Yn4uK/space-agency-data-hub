@@ -50,4 +50,13 @@ public class MissionDAO implements IMissionDAO {
 
         return missions;
     }
+
+    @Override
+    public Mission findById(int id) {
+
+        Session currentSession = entityManager.unwrap(Session.class);
+        Mission mission = currentSession.get(Mission.class, id);
+
+        return mission;
+    }
 }

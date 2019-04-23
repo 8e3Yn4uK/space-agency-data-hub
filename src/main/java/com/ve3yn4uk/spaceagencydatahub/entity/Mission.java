@@ -1,6 +1,9 @@
 package com.ve3yn4uk.spaceagencydatahub.entity;
 
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -10,31 +13,35 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "mission")
-public class Mission {
+public class Mission implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue
+    @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 64, nullable = false)
     private String name;
 
-    @Column(name = "imagery_type")
+    @Column(name = "imagery_type", length = 64, nullable = false)
+    @Pattern(regexp= "Panchromatic|Multispectral|Hyperspectral", flags = Pattern.Flag.CASE_INSENSITIVE,
+            message = "Possible types are: Panchromatic, Multispectral, Hyperspectral")
     private String imageryType;
 
-    @Column(name = "start_date")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "start_date", nullable = false)
     private Date startDate;
 
-    @Column(name = "finish_date")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "finish_date", nullable = false)
     private Date finishDate;
 
     public Mission() {
     }
 
-    public Mission(String name, ImageryType imageryType, Date startDate, Date finishDate) {
+    public Mission(String name, String imageryType, Date startDate, Date finishDate) {
         this.name = name;
-        this.imageryType = imageryType.toString();
+        this.imageryType = imageryType;
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
@@ -59,8 +66,8 @@ public class Mission {
         return imageryType;
     }
 
-    public void setImageryType(ImageryType imageryType) {
-        this.imageryType = imageryType.toString();
+    public void setImageryType(String imageryType) {
+        this.imageryType = imageryType;
     }
 
     public Date getStartDate() {

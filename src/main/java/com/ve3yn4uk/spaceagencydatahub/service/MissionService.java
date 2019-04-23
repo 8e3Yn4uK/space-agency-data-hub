@@ -42,4 +42,10 @@ public class MissionService implements IMissionService {
 
         return missionDAO.findAll();
     }
+
+    @Override
+    public Mission findById(int id) {
+
+        return missionDAO.findById(id);
+    }
 }
