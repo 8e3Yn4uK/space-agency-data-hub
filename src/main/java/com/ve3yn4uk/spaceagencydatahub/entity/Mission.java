@@ -16,21 +16,20 @@ public class Mission implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "name", length = 64, nullable = false)
+    @Column()
     private String name;
 
-    @Column(name = "imagery_type", length = 64, nullable = false)
+    @Column()
     private String imageryType;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "start_date", nullable = false)
+    @Column
     private Date startDate;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "finish_date", nullable = false)
+    @Column
     private Date finishDate;
 
     public Mission() {

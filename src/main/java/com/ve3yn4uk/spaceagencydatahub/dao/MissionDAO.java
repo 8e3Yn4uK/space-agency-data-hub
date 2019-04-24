@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import java.util.List;
 
 /**
  * Created by 8e3Yn4uK on 23.04.2019
@@ -39,16 +38,6 @@ public class MissionDAO implements IMissionDAO {
         myQuery.setParameter("missionId", id);
         myQuery.executeUpdate();
 
-    }
-
-    @Override
-    public List<Mission> findAll() {
-
-        Session currentSession = entityManager.unwrap(Session.class);
-        Query<Mission> myQuery = currentSession.createQuery("from Mission", Mission.class);
-        List<Mission> missions = myQuery.getResultList();
-
-        return missions;
     }
 
     @Override

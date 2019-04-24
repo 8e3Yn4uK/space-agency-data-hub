@@ -1,5 +1,6 @@
 package com.ve3yn4uk.spaceagencydatahub.entity;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,7 +17,6 @@ public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private int id;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
@@ -25,13 +25,13 @@ public class Product implements Serializable {
     private Mission mission;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "acquisition_date", nullable = false)
+    @Column()
     private Date acquisitionDate;
 
     @Embedded
     private Footprint footprint;
 
-    @Column(name = "price", nullable = false)
+    @Column()
     private BigDecimal price;
 
     @Column(name = "url", length = 64, nullable = false)

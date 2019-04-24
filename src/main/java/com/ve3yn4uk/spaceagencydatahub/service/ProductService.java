@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by 8e3Yn4uK on 24.04.2019
@@ -35,31 +33,6 @@ public class ProductService implements IProductService {
     public void deleteById(int id) {
 
         productDAO.deleteById(id);
-    }
-
-    @Override
-    @Transactional
-    public List<Product> findByMissionName(String missionName) {
-
-        return productDAO.findByMissionName(missionName);
-    }
-
-    @Override
-    @Transactional
-    public List<Product> findByMissionImageryType(String imageryType) {
-        return null;
-    }
-
-    @Override
-    @Transactional
-    public List<Product> findByProductAcquisitionDate(Date date, boolean b) {
-        return null;
-    }
-
-    @Override
-    @Transactional
-    public List<Product> findByProductAcquisitionDate(Date date1, Date date2) {
-        return null;
     }
 
     @Override

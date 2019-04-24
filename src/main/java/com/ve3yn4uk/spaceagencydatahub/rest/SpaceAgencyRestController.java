@@ -7,7 +7,6 @@ import com.ve3yn4uk.spaceagencydatahub.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
  * Created by 8e3Yn4uK on 23.04.2019
@@ -76,19 +75,16 @@ public class SpaceAgencyRestController {
     }
 
     /**
-     * mapping for GET / missions - get all existing missions
+     * mapping for POST /missions/{missionId}/products - add new product.
      */
-    @GetMapping("/missions")
-    public List<Mission> findAll() {
-        return missionService.findAll();
-    }
+    @PostMapping("/missions/{missionId}/products")
+    public Product addProduct(@PathVariable(value = "missionId") int missionId, @RequestBody Product product) {
 
-    /**
-     * mapping for POST /products - add new product.
-     */
-    @PostMapping("/products")
-    public Product addProduct(@RequestBody Product product) {
-
+        Mission tempMission = missionService.findById(missionId);
+        if (tempMission == null){
+            throw new MissionNotFoundException("Mission id not found " + missionId);
+        }
+        product.setMission(tempMission);
         product.setId(0);
         productService.save(product);
 
@@ -96,7 +92,7 @@ public class SpaceAgencyRestController {
     }
 
     /**
-     * mapping for DELETE / missions - remove an existing mission
+     * mapping for DELETE / /products/{productId} - remove an existing product
      */
     @DeleteMapping("/products/{productId}")
     public String removeProduct(@PathVariable int productId) {
@@ -111,11 +107,4 @@ public class SpaceAgencyRestController {
         return "Deleted product id " + productId;
     }
 
-    /**
-     * mapping for GET / products
-     */
-    @GetMapping("/products")
-    public List<Product> findProductByMissionName() {
-        return productService.findByMissionName("asd");
-    }
 }

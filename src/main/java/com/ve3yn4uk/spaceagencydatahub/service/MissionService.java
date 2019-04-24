@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 /**
  * Created by 8e3Yn4uK on 23.04.2019
@@ -34,13 +33,6 @@ public class MissionService implements IMissionService {
     public void deleteById(int id) {
 
         missionDAO.deleteById(id);
-    }
-
-    @Override
-    @Transactional
-    public List<Mission> findAll() {
-
-        return missionDAO.findAll();
     }
 
     @Override
