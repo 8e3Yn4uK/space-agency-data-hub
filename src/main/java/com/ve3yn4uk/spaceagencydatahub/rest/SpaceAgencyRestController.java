@@ -1,7 +1,9 @@
 package com.ve3yn4uk.spaceagencydatahub.rest;
 
 import com.ve3yn4uk.spaceagencydatahub.entity.Mission;
+import com.ve3yn4uk.spaceagencydatahub.entity.Product;
 import com.ve3yn4uk.spaceagencydatahub.service.IMissionService;
+import com.ve3yn4uk.spaceagencydatahub.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +15,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class MissionRestController {
+public class SpaceAgencyRestController {
 
     private IMissionService missionService;
+    private IProductService productService;
 
     @Autowired
-    public MissionRestController(IMissionService missionService) {
+    public SpaceAgencyRestController(IMissionService missionService, IProductService productService) {
         this.missionService = missionService;
+        this.productService = productService;
     }
 
     /**
@@ -71,9 +75,47 @@ public class MissionRestController {
         return "Deleted mission id " + missionId;
     }
 
-
+    /**
+     * mapping for GET / missions - get all existing missions
+     */
     @GetMapping("/missions")
     public List<Mission> findAll() {
         return missionService.findAll();
+    }
+
+    /**
+     * mapping for POST /products - add new product.
+     */
+    @PostMapping("/products")
+    public Product addProduct(@RequestBody Product product) {
+
+        product.setId(0);
+        productService.save(product);
+
+        return product;
+    }
+
+    /**
+     * mapping for DELETE / missions - remove an existing mission
+     */
+    @DeleteMapping("/products/{productId}")
+    public String removeProduct(@PathVariable int productId) {
+
+        Product product = productService.findById(productId);
+
+        if (product == null) {
+            throw new MissionNotFoundException("Product id not found " + productId);
+        }
+        productService.deleteById(productId);
+
+        return "Deleted product id " + productId;
+    }
+
+    /**
+     * mapping for GET / products
+     */
+    @GetMapping("/products")
+    public List<Product> findProductByMissionName() {
+        return productService.findByMissionName("asd");
     }
 }

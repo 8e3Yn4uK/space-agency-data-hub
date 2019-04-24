@@ -4,16 +4,16 @@ package com.ve3yn4uk.spaceagencydatahub.rest;
  * Created by 8e3Yn4uK on 23.04.2019
  */
 
-public class MissionErrorResponse {
+public class CustomErrorResponse {
 
     private int Status;
     private String Message;
     private long timeStamp;
 
-    public MissionErrorResponse() {
+    public CustomErrorResponse() {
     }
 
-    public MissionErrorResponse(int status, String message, long timeStamp) {
+    public CustomErrorResponse(int status, String message, long timeStamp) {
         Status = status;
         Message = message;
         this.timeStamp = timeStamp;

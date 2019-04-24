@@ -2,7 +2,6 @@ package com.ve3yn4uk.spaceagencydatahub.entity;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -16,7 +15,7 @@ import java.util.Objects;
 public class Mission implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
 
@@ -24,8 +23,6 @@ public class Mission implements Serializable {
     private String name;
 
     @Column(name = "imagery_type", length = 64, nullable = false)
-    @Pattern(regexp= "Panchromatic|Multispectral|Hyperspectral", flags = Pattern.Flag.CASE_INSENSITIVE,
-            message = "Possible types are: Panchromatic, Multispectral, Hyperspectral")
     private String imageryType;
 
     @Temporal(TemporalType.DATE)
@@ -85,6 +82,7 @@ public class Mission implements Serializable {
     public void setFinishDate(Date finishDate) {
         this.finishDate = finishDate;
     }
+
 
     @Override
     public boolean equals(Object o) {

@@ -44,6 +44,7 @@ public class MissionService implements IMissionService {
     }
 
     @Override
+    @Transactional
     public Mission findById(int id) {
 
         return missionDAO.findById(id);

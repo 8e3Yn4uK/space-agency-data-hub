@@ -13,27 +13,27 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class CustomRestExceptionHandler {
 
     @ExceptionHandler
-    public ResponseEntity<MissionErrorResponse> handleException(MissionNotFoundException exc){
+    public ResponseEntity<CustomErrorResponse> handleException(MissionNotFoundException exc){
 
-        MissionErrorResponse error = new MissionErrorResponse(HttpStatus.NOT_FOUND.value(),
+        CustomErrorResponse error = new CustomErrorResponse(HttpStatus.NOT_FOUND.value(),
                                                                 exc.getMessage(), System.currentTimeMillis());
 
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
-    public ResponseEntity<MissionErrorResponse> handleException(IllegalImageryTypeException exc){
+    public ResponseEntity<CustomErrorResponse> handleException(IllegalImageryTypeException exc){
 
-        MissionErrorResponse error = new MissionErrorResponse(HttpStatus.NOT_ACCEPTABLE.value(),
+        CustomErrorResponse error = new CustomErrorResponse(HttpStatus.NOT_ACCEPTABLE.value(),
                 exc.getMessage(), System.currentTimeMillis());
 
         return new ResponseEntity<>(error, HttpStatus.NOT_ACCEPTABLE);
     }
 
     @ExceptionHandler
-    public ResponseEntity<MissionErrorResponse> handleException(Exception exc){
+    public ResponseEntity<CustomErrorResponse> handleException(Exception exc){
 
-        MissionErrorResponse error = new MissionErrorResponse(HttpStatus.BAD_REQUEST.value(),
+        CustomErrorResponse error = new CustomErrorResponse(HttpStatus.BAD_REQUEST.value(),
                 exc.getMessage(), System.currentTimeMillis());
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
