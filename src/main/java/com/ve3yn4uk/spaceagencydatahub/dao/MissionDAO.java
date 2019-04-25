@@ -27,7 +27,6 @@ public class MissionDAO implements IMissionDAO {
 
         Session currentSession = entityManager.unwrap(Session.class);
         currentSession.saveOrUpdate(mission);
-
     }
 
     @Override
@@ -37,7 +36,6 @@ public class MissionDAO implements IMissionDAO {
         Query myQuery = currentSession.createQuery("delete from Mission where id=:missionId");
         myQuery.setParameter("missionId", id);
         myQuery.executeUpdate();
-
     }
 
     @Override

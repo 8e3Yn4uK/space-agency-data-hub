@@ -26,7 +26,7 @@ public class SpaceAgencyRestController {
     }
 
     /**
-     * mapping for POST /missions - add new mission.
+     * mapping for POST api/missions - add new mission.
      */
     @PostMapping("/missions")
     public Mission addMission(@RequestBody Mission mission) {
@@ -42,7 +42,7 @@ public class SpaceAgencyRestController {
     }
 
     /**
-     * mapping for PUT /missions - edit an existing mission
+     * mapping for PUT api/missions - edit an existing mission
      */
     @PutMapping("/missions")
     public Mission editMission(@RequestBody Mission mission) {
@@ -59,7 +59,7 @@ public class SpaceAgencyRestController {
     }
 
     /**
-     * mapping for DELETE / missions - remove an existing mission
+     * mapping for DELETE api/missions - remove an existing mission
      */
     @DeleteMapping("/missions/{missionId}")
     public String removeMission(@PathVariable int missionId) {
@@ -75,7 +75,7 @@ public class SpaceAgencyRestController {
     }
 
     /**
-     * mapping for POST /missions/{missionId}/products - add new product.
+     * mapping for POST api/missions/{missionId}/products - add new product.
      */
     @PostMapping("/missions/{missionId}/products")
     public Product addProduct(@PathVariable(value = "missionId") int missionId, @RequestBody Product product) {
@@ -92,7 +92,7 @@ public class SpaceAgencyRestController {
     }
 
     /**
-     * mapping for DELETE / /products/{productId} - remove an existing product
+     * mapping for DELETE api/products/{productId} - remove an existing product
      */
     @DeleteMapping("/products/{productId}")
     public String removeProduct(@PathVariable int productId) {

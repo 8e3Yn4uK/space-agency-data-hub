@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -64,15 +63,11 @@ public class DataInit implements ApplicationRunner {
         Product myProduct2 = new Product(myMission2, d3, new Footprint(-155, 13, 29, 48), new BigDecimal(49.99), "www.google.com");
         Product myProduct3 = new Product(myMission3, d1, new Footprint(244, 0, 49, 13), new BigDecimal(79.99), "www.google.com");
 
-
         productService.save(myProduct1);
         productService.save(myProduct2);
         productService.save(myProduct3);
         missionService.save(myMission1);
         missionService.save(myMission2);
         missionService.save(myMission3);
-
-
-
     }
 }

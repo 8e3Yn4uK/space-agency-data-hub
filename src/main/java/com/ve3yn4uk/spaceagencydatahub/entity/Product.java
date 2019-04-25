@@ -1,6 +1,5 @@
 package com.ve3yn4uk.spaceagencydatahub.entity;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -20,7 +19,7 @@ public class Product implements Serializable {
     private int id;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                          CascadeType.DETACH, CascadeType.REFRESH})
+            CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "mission_id")
     private Mission mission;
 

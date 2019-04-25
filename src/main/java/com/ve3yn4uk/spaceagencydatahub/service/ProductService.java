@@ -36,6 +36,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    @Transactional
     public Product findById(int id) {
         return productDAO.findById(id);
     }

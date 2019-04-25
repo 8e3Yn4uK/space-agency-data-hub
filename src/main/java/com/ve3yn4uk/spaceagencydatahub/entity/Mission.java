@@ -1,6 +1,5 @@
 package com.ve3yn4uk.spaceagencydatahub.entity;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -81,7 +80,6 @@ public class Mission implements Serializable {
     public void setFinishDate(Date finishDate) {
         this.finishDate = finishDate;
     }
-
 
     @Override
     public boolean equals(Object o) {
